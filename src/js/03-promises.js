@@ -12,8 +12,6 @@ function onSubmit(e) {
   let stepValue = Number(step.value);
   let amountValue = Number(amount.value);
   for (let i = 1; i <= amountValue; i += 1) {
-    delayValue += stepValue;
-
     createPromise(i, delayValue)
       .then(({ position, delay }) => {
         console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
@@ -21,6 +19,7 @@ function onSubmit(e) {
       .catch(({ position, delay }) => {
         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       });
+    delayValue += stepValue;
   }
 
   function createPromise(position, delay) {
